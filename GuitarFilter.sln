@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.779
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuitarFilter", "GuitarFilter\GuitarFilter.csproj", "{89CECE29-D1A8-4479-915F-07F33EDD54B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89CECE29-D1A8-4479-915F-07F33EDD54B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89CECE29-D1A8-4479-915F-07F33EDD54B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89CECE29-D1A8-4479-915F-07F33EDD54B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89CECE29-D1A8-4479-915F-07F33EDD54B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0745E76E-94F0-41EE-A5D4-008ECD55A0E2}
+	EndGlobalSection
+EndGlobal
