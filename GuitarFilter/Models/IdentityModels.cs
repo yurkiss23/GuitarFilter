@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using GuitarFilter.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -21,7 +22,7 @@ namespace GuitarFilter.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DefaultConnection")
         {
         }
 
@@ -29,5 +30,10 @@ namespace GuitarFilter.Models
         {
             return new ApplicationDbContext();
         }
+        public DbSet<FilterName> FilterNames { get; set; }
+        public DbSet<FilterValue> FilterValues { get; set; }
+        public DbSet<FilterNameGroup> FilterNameGroups { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Filter> Filters { get; set; }
     }
 }

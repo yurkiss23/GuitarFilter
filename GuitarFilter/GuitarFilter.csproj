@@ -170,10 +170,37 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Entities\Filter.cs" />
+    <Compile Include="Entities\FilterName.cs" />
+    <Compile Include="Entities\FilterNameGroup.cs" />
+    <Compile Include="Entities\FilterValue.cs" />
+    <Compile Include="Entities\Product.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909042029501_tblFilterName.cs" />
+    <Compile Include="Migrations\201909042029501_tblFilterName.Designer.cs">
+      <DependentUpon>201909042029501_tblFilterName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909042057220_tblFilterValues.cs" />
+    <Compile Include="Migrations\201909042057220_tblFilterValues.Designer.cs">
+      <DependentUpon>201909042057220_tblFilterValues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909042114146_tblFilterNameGroup.cs" />
+    <Compile Include="Migrations\201909042114146_tblFilterNameGroup.Designer.cs">
+      <DependentUpon>201909042114146_tblFilterNameGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909042130259_tblProducts.cs" />
+    <Compile Include="Migrations\201909042130259_tblProducts.Designer.cs">
+      <DependentUpon>201909042130259_tblProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909042204387_tblFilters.cs" />
+    <Compile Include="Migrations\201909042204387_tblFilters.Designer.cs">
+      <DependentUpon>201909042204387_tblFilters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\FilterViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -251,6 +278,23 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201909042029501_tblFilterName.resx">
+      <DependentUpon>201909042029501_tblFilterName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909042057220_tblFilterValues.resx">
+      <DependentUpon>201909042057220_tblFilterValues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909042114146_tblFilterNameGroup.resx">
+      <DependentUpon>201909042114146_tblFilterNameGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909042130259_tblProducts.resx">
+      <DependentUpon>201909042130259_tblProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909042204387_tblFilters.resx">
+      <DependentUpon>201909042204387_tblFilters.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
