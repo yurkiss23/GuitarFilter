@@ -66,6 +66,18 @@ namespace GuitarFilter.Controllers
             return result.ToList();
 
         }
+        [HttpPost]
+        public ActionResult FilterProduct(List<FNameViewModel> list)
+        {
+            if (list == null)
+            {
+                return View("index");
+            }
+
+
+
+            return RedirectToAction("index");
+        }
 
         public ActionResult About()
         {
