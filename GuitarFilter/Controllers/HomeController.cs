@@ -20,6 +20,14 @@ namespace GuitarFilter.Controllers
             var model = GetListFilters(_context);
             return View(model);
         }
+        List<ProductViewModel>GetListProduct(ApplicationDbContext context)
+        {
+            List<ProductViewModel> result = null;
+
+
+
+            return result.ToList();
+        }
         private static List<FNameViewModel> GetListFilters(ApplicationDbContext context)
         {
             var queryName = from f in context.FilterNames
@@ -67,14 +75,21 @@ namespace GuitarFilter.Controllers
 
         }
         [HttpPost]
-        public ActionResult FilterProduct(List<FNameViewModel> list)
+        public ActionResult FilterProduct(FNameViewModel model)
         {
-            if (list == null)
-            {
-                return View("index");
-            }
+            //int l = arr.Length;
 
+            //if (list != null)
+            //{
+            //    return View("index");
+            //}
 
+            //var gl = GetListFilters(_context);
+            //foreach(var item in gl)
+            //{
+            //    //var s = item
+            //}
+            ////int l = gl.Count();
 
             return RedirectToAction("index");
         }

@@ -54,8 +54,51 @@
         <script>
             $(function () {
                 $("#filter").on("click", function () {
+                    let listIdCheck = document.getElementsByName("idvalues");
+                    alert(listIdCheck.length);
+                    //let listIdCheck = $(":checked");
+                
+                    let arr = [];
+                    //arr.push
+                    alert(arr.length);
+                    let ftr = null;
 
-                    alert(1);
+                    for (let i = 0; i < listIdCheck.length; i++) {
+                        $(listIdCheck[i]).on("change", function () {
+                            alert(i);
+                            alert(this.parentNode.lastElementChild.lastElementChild.textContent);
+
+                        });
+                        //    alert(i);
+                        //    //arr.push(ftr);
+                        //});
+                        //if (listIdCheck[i].checked) {
+                        //ftr = {
+                        //    id: listIdCheck[i].getAttribute("value"),
+                        //    name: this.parentNode.lastElementChild.lastElementChild.textContent
+                        //};
+                        //arr[i] = ftr;
+
+                        //alert(arr.length);
+                        
+                    }
+                    
+                    
+                    //for (let i = 0; i < listIdCheck.length; i++) {
+                    //    let listAttr = listIdCheck[i].getAttribute("value");
+                    //    alert(listAttr);
+                    //    //arr[i] = listAttr;
+                    //    //alert(arr[i]);
+                    //}
+
+                //    $.post("/Home/FilterProduct",
+                //        listIdCheck,
+                //        function (data) {
+                //            alert(data);
+                //        });
+                    //alert(listIdCheck.length);
+                    
+                    //alert(1);
 
                 });
             })
