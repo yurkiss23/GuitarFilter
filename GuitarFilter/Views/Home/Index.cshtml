@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col-md-4">
         <h2>@ViewBag.FLabel</h2>
-        @using (Html.BeginForm("FilterProduct", "Home"))
+        @using (Html.BeginForm("FilterProduct", "Home", FormMethod.Post))
         {
             int i = 0;
             foreach (var fname in Model)
@@ -34,10 +34,10 @@
                     }
                 </ul>
             }
-            <input type="submit" value="застосувати фільтр" class="btn btn-success form-control" />
+            <button type="submit" class="btn btn-success form-control">застосувати фільтр</button>
             <p></p>
+            <button id="filter" class="btn btn-info form-control">фільтр без оновлення</button>
         }
-        <button id="filter" class="btn btn-info form-control" style="width:280px">фільтр без оновлення</button>
     </div>
     <div class="col-md-4">
         <h2>Get more libraries</h2>
@@ -54,51 +54,34 @@
         <script>
             $(function () {
                 $("#filter").on("click", function () {
-                    let listIdCheck = document.getElementsByName("idvalues");
+                    let listIdCheck = $(":checked");
                     alert(listIdCheck.length);
-                    //let listIdCheck = $(":checked");
                 
-                    let arr = [];
-                    //arr.push
-                    alert(arr.length);
-                    let ftr = null;
+                    let model = [];
 
                     for (let i = 0; i < listIdCheck.length; i++) {
-                        $(listIdCheck[i]).on("change", function () {
-                            alert(i);
-                            alert(this.parentNode.lastElementChild.lastElementChild.textContent);
-
-                        });
-                        //    alert(i);
-                        //    //arr.push(ftr);
-                        //});
-                        //if (listIdCheck[i].checked) {
-                        //ftr = {
-                        //    id: listIdCheck[i].getAttribute("value"),
-                        //    name: this.parentNode.lastElementChild.lastElementChild.textContent
-                        //};
-                        //arr[i] = ftr;
-
-                        //alert(arr.length);
-                        
+                        let node = {
+                            id: listIdCheck[i].getAttribute("value"),
+                            name: listIdCheck[i].parentNode.lastElementChild.lastElementChild.textContent
+                        }
+                        alert(node.id);
+                        alert(node.name);
+                        model.push(node);
                     }
-                    
-                    
-                    //for (let i = 0; i < listIdCheck.length; i++) {
-                    //    let listAttr = listIdCheck[i].getAttribute("value");
-                    //    alert(listAttr);
-                    //    //arr[i] = listAttr;
-                    //    //alert(arr[i]);
-                    //}
+                    alert(model.length);
+                    model.toList();
 
-                //    $.post("/Home/FilterProduct",
-                //        listIdCheck,
-                //        function (data) {
-                //            alert(data);
-                //        });
-                    //alert(listIdCheck.length);
+                    $.post("/Home/FilterProduct",
+                        {
+                            Id: 0,
+                            Name: qwe
+                        },
+                        function (data) {
+                            alert(data);
+                        });
+                    alert(listIdCheck.length);
                     
-                    //alert(1);
+                    alert(1);
 
                 });
             })

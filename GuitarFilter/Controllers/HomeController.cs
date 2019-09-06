@@ -75,9 +75,9 @@ namespace GuitarFilter.Controllers
 
         }
         [HttpPost]
-        public ActionResult FilterProduct(FNameViewModel model)
+        public ActionResult FilterProduct(List<FNameViewModel> model)
         {
-            //int l = arr.Length;
+            //int l = model;
 
             //if (list != null)
             //{
