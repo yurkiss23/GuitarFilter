@@ -117,30 +117,30 @@ namespace GuitarFilter.Controllers
             }).ToList();
             return result;
         }
-        [HttpPost]
-        public ActionResult FilterProduct(List<ProductViewModel> model)
-        {
-            //int l = model;
+        //[HttpPost]
+        //public ActionResult FilterProduct(List<ProductViewModel> model)
+        //{
+        //    //int l = model;
 
-            //if (list != null)
-            //{
-            //    return View("index");
-            //}
+        //    //if (list != null)
+        //    //{
+        //    //    return View("index");
+        //    //}
 
-            //var gl = GetListFilters(_context);
-            //foreach(var item in gl)
-            //{
-            //    //var s = item
-            //}
-            ////int l = gl.Count();
-            ///
-            Product product = new Product
-            {
+        //    //var gl = GetListFilters(_context);
+        //    //foreach(var item in gl)
+        //    //{
+        //    //    //var s = item
+        //    //}
+        //    ////int l = gl.Count();
+        //    ///
+        //    Product product = new Product
+        //    {
 
-            };
+        //    };
 
-            return RedirectToAction("index");
-        }
+        //    return RedirectToAction("index");
+        //}
 
         public ActionResult About()
         {
