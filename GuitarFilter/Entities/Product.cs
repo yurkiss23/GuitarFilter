@@ -17,5 +17,7 @@ namespace GuitarFilter.Entities
         public decimal Price { get; set; }
         public int Quantity { get; set; }
         public DateTime DateCreate { get; set; }
+
+        public virtual ICollection<Filter> Filters { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using GuitarFilter.Entities;
 
 namespace GuitarFilter.Controllers
 {
@@ -15,18 +16,19 @@ namespace GuitarFilter.Controllers
         {
             _context = new ApplicationDbContext();
         }
-        public ActionResult Index()
+        public ActionResult Index(string []idvalues)
         {
             var model = GetListFilters(_context);
+
+            int[] valuesId = new int[0];
+            if (idvalues != null)
+            {
+                valuesId = idvalues.Select(v => int.Parse(v)).ToArray();
+            }
+            //int[] idValuesFilter = { 8 };
+            var listProduct = GetFilterProductList(_context, model, valuesId);
+
             return View(model);
-        }
-        List<ProductViewModel>GetListProduct(ApplicationDbContext context)
-        {
-            List<ProductViewModel> result = null;
-
-
-
-            return result.ToList();
         }
         private static List<FNameViewModel> GetListFilters(ApplicationDbContext context)
         {
@@ -74,8 +76,49 @@ namespace GuitarFilter.Controllers
             return result.ToList();
 
         }
+        private List<ProductViewModel> GetFilterProductList(ApplicationDbContext context,
+            List<FNameViewModel> filterList, int[] values)
+        {
+            var query = context.Products.AsQueryable();
+            //проходимо цикл по назвам фільтра
+            foreach (var fName in filterList)
+            {
+                int count = 0; //кількість співпадінь в даній групі фільтрів
+                var predicate = PredicateBuilder.False<Product>();
+                //проходимо цикл по значенням назв фільтрів
+                foreach (var fValue in fName.Children)
+                {
+                    for (int i = 0; i < values.Length; i++)
+                    {
+                        var idValue = fValue.Id;
+                        //перевірка на співпадіння(додаємо до запита "OR" якщо є співпадіння в однакових групах)
+                        if (idValue == values[i])
+                        {
+                            predicate = predicate
+                                .Or(p => p.Filters
+                                    .Any(f => f.FilterValueId == idValue));
+                            count++;
+                        }
+                    }
+                }
+                //додаємо до запита "AND" якщо є співпадіння в різних групах
+                if (count > 0)
+                {
+                    query = query.Where(predicate);
+                }
+            }
+            //формуємо новий список(відфільтрований)
+            var result = query.Select(p => new ProductViewModel
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price//,
+                //Quantity = p.Quantity
+            }).ToList();
+            return result;
+        }
         [HttpPost]
-        public ActionResult FilterProduct(List<FNameViewModel> model)
+        public ActionResult FilterProduct(List<ProductViewModel> model)
         {
             //int l = model;
 
@@ -90,6 +133,11 @@ namespace GuitarFilter.Controllers
             //    //var s = item
             //}
             ////int l = gl.Count();
+            ///
+            Product product = new Product
+            {
+
+            };
 
             return RedirectToAction("index");
         }
