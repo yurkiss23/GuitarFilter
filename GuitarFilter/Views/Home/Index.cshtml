@@ -68,14 +68,15 @@
                         alert("de-click");
                     } else {
                         alert("click");
+                        $("#content").load('@Html.Partial("_ProductView", ViewData["listProduct"])');
                     }
                 })
                 let list=@Html.Raw(Json.Encode(ViewData["listProduct"]));
                 for (let i = 0; i < list.length; i++) {
                     alert(i);
-                    alert(list[i].Name);
+                    alert(list[i].Id + ':' + list[i].Name + ':' + list[i].Price);
                 }
-                $("#content").load(@Html.Partial("_ProductView"), list);
+
 
                 $("#filter").on("click", function () {
                     let listIdCheck = $(":checked");
