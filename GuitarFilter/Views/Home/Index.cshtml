@@ -11,6 +11,10 @@
 
 <div class="row">
     <div class="col-md-4">
+        @if (ViewBag.totalProduct != ViewBag.countProduct)
+        {
+            <a class="btn btn-primary btn-block" href="@Url.Action("Index", "Home")">скасувати фільтр</a>
+        }
         <h2>@ViewBag.FLabel</h2>
         @using (Html.BeginForm("Index", "Home", FormMethod.Get))
         {
@@ -34,42 +38,20 @@
                     }
                 </ul>
             }
-            <button type="submit" class="btn btn-success form-control">застосувати фільтр</button>
+            <button type="submit" class="btn btn-success form-control" id="submit">застосувати фільтр</button>
             <p></p>
-            <button id="filter" class="btn btn-info form-control">фільтр без оновлення</button>
         }
+        <button id="filter" class="btn btn-info form-control">фільтр без оновлення</button>
     </div>
-    <div class="col-md-4">
-
-        @Html.Partial("_ProductView", Model.List<GuitarFilter.Models.ProductViewModel>)
-
-        <h2>@ViewBag.FLabel</h2>
-        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    <div class="col-md-8" id="content">
+        
+        @if (ViewBag.totalProduct != ViewBag.countProduct)
         {
-            int i = 0;
-            foreach (var fname in Model)
-            {
-                <ul>
-                    @fname.Name
-                    @foreach (var fvalue in fname.Children)
-                    {
-                        i++;
-                        var id = $"f{i}";
-                        <li>
-                            <div class="checkbox checkbox-success checkbox-sm">
-                                <input type="checkbox" class="styled" value="@fvalue.Id" name="idvalues" id="@id" />
-                                <label for="@id">
-                                    <span style="font-size:14pt; position: absolute; margin-top:-10px;">@fvalue.Name</span>
-                                </label>
-                            </div>
-                        </li>
-                    }
-                </ul>
-            }
-            <button type="submit" class="btn btn-success form-control">застосувати фільтр</button>
-            <p></p>
-            <button id="filter" class="btn btn-info form-control">фільтр без оновлення</button>
+            <h4>всього знайдено товарів: @ViewBag.countProduct</h4>
         }
+
+        @Html.Partial("_ProductView", ViewData["listProduct"])
+
     </div>
     @*<div class="col-md-4">
         <h2>Web Hosting</h2>
@@ -80,11 +62,26 @@
     @section Scripts{
         <script>
             $(function () {
+                    alert("end js");
+                $(".styled").on("click", function () {
+                    if (this.checked == false) {
+                        alert("de-click");
+                    } else {
+                        alert("click");
+                    }
+                })
+                let list=@Html.Raw(Json.Encode(ViewData["listProduct"]));
+                for (let i = 0; i < list.length; i++) {
+                    alert(i);
+                    alert(list[i].Name);
+                }
+                $("#content").load(@Html.Partial("_ProductView"), list);
+
                 $("#filter").on("click", function () {
                     let listIdCheck = $(":checked");
                     alert(listIdCheck.length);
                 
-                    let model = [];
+                    let idval = ["1","8"];
 
                     for (let i = 0; i < listIdCheck.length; i++) {
                         let node = {
@@ -93,23 +90,17 @@
                         }
                         alert(node.id);
                         alert(node.name);
-                        model.push(node);
+                        idval.push(node);
                     }
-                    alert(model.length);
-                    model.toList();
+                    alert(idval);
+                    //idval.toList();
 
-                    $.post("/Home/FilterProduct",
-                        {
-                            Id: 0,
-                            Name: qwe
-                        },
-                        function (data) {
+                    $.post("/Home/FilterProduct", idval, function (data) {
                             alert(data);
-                        });
-                    alert(listIdCheck.length);
-                    
-                    alert(1);
+                    });
 
+                    alert(listIdCheck.length);
+                    location.reload();
                 });
             })
         </script>

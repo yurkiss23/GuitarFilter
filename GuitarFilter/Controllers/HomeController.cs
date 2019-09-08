@@ -25,8 +25,12 @@ namespace GuitarFilter.Controllers
             {
                 valuesId = idvalues.Select(v => int.Parse(v)).ToArray();
             }
+            
             //int[] idValuesFilter = { 8 };
             var listProduct = GetFilterProductList(_context, model, valuesId);
+            ViewData["listProduct"] = listProduct;
+            ViewBag.countProduct = listProduct.Count;
+            ViewBag.totalProduct = _context.Products.Count();
 
             return View(model);
         }
@@ -117,30 +121,30 @@ namespace GuitarFilter.Controllers
             }).ToList();
             return result;
         }
-        //[HttpPost]
-        //public ActionResult FilterProduct(List<ProductViewModel> model)
-        //{
-        //    //int l = model;
+        [HttpPost]
+        public ActionResult FilterProduct(string[] idval)
+        {
+            int l = idval.Length;
 
-        //    //if (list != null)
-        //    //{
-        //    //    return View("index");
-        //    //}
+            //if (list != null)
+            //{
+            //    return View("index");
+            //}
 
-        //    //var gl = GetListFilters(_context);
-        //    //foreach(var item in gl)
-        //    //{
-        //    //    //var s = item
-        //    //}
-        //    ////int l = gl.Count();
-        //    ///
-        //    Product product = new Product
-        //    {
+            //var gl = GetListFilters(_context);
+            //foreach(var item in gl)
+            //{
+            //    //var s = item
+            //}
+            ////int l = gl.Count();
+            ///
+            Product product = new Product
+            {
 
-        //    };
+            };
 
-        //    return RedirectToAction("index");
-        //}
+            return RedirectToAction("index");
+        }
 
         public ActionResult About()
         {
