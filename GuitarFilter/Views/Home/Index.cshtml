@@ -68,41 +68,41 @@
                         alert("de-click");
                     } else {
                         alert("click");
-                        $("#content").load('@Html.Partial("_ProductView", ViewData["listProduct"])');
+                        @*$("#content").load('@Html.Partial("_ProductView", ViewData["listProduct"])');*@
                     }
                 })
-                let list=@Html.Raw(Json.Encode(ViewData["listProduct"]));
+                @*let list=@Html.Raw(Json.Encode(ViewData["listProduct"]));
                 for (let i = 0; i < list.length; i++) {
                     alert(i);
                     alert(list[i].Id + ':' + list[i].Name + ':' + list[i].Price);
-                }
+                }*@
 
 
-                $("#filter").on("click", function () {
-                    let listIdCheck = $(":checked");
-                    alert(listIdCheck.length);
+                //$("#filter").on("click", function () {
+                //    let listIdCheck = $(":checked");
+                //    alert(listIdCheck.length);
                 
-                    let idval = ["1","8"];
+                //    let idval = ["1","8"];
 
-                    for (let i = 0; i < listIdCheck.length; i++) {
-                        let node = {
-                            id: listIdCheck[i].getAttribute("value"),
-                            name: listIdCheck[i].parentNode.lastElementChild.lastElementChild.textContent
-                        }
-                        alert(node.id);
-                        alert(node.name);
-                        idval.push(node);
-                    }
-                    alert(idval);
-                    //idval.toList();
+                //    for (let i = 0; i < listIdCheck.length; i++) {
+                //        let node = {
+                //            id: listIdCheck[i].getAttribute("value"),
+                //            name: listIdCheck[i].parentNode.lastElementChild.lastElementChild.textContent
+                //        }
+                //        alert(node.id);
+                //        alert(node.name);
+                //        idval.push(node);
+                //    }
+                //    alert(idval);
+                //    //idval.toList();
 
-                    $.post("/Home/FilterProduct", idval, function (data) {
-                            alert(data);
-                    });
+                //    //$.post("/Home/FilterProduct", idval, function (data) {
+                //    //        alert(data);
+                //    //});
 
-                    alert(listIdCheck.length);
-                    location.reload();
-                });
+                //    //alert(listIdCheck.length);
+                //    //location.reload();
+                //});
             })
         </script>
         }
