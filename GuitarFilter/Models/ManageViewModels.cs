@@ -12,6 +12,8 @@ namespace GuitarFilter.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        public IEnumerable<ProductViewModel> Products { get; set; }
+        public PageInfo PageInfo { get; set; }
     }
 
     public class ManageLoginsViewModel

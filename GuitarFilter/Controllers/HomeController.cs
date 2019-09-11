@@ -16,7 +16,7 @@ namespace GuitarFilter.Controllers
         {
             _context = new ApplicationDbContext();
         }
-        public ActionResult Index(string []idvalues)
+        public ActionResult Index(string []idvalues, int page = 1)
         {
             var model = GetListFilters(_context);
 
@@ -29,10 +29,16 @@ namespace GuitarFilter.Controllers
             //int[] idValuesFilter = { 8 };
             var listProduct = GetFilterProductList(_context, model, valuesId);
             ViewData["listProduct"] = listProduct;
+            ViewBag.listFilter = model;
             ViewBag.countProduct = listProduct.Count;
             ViewBag.totalProduct = _context.Products.Count();
 
-            return View(model);
+            int pageSize = 2;
+            IEnumerable<ProductViewModel> guitarPerPages = listProduct.Skip((page - 1) * pageSize).Take(pageSize);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = listProduct.Count };
+            IndexViewModel ivm = new IndexViewModel { PageInfo = pageInfo, Products = guitarPerPages };
+            //ViewBag.pInfo = PageInfo
+            return View(ivm);
         }
         private static List<FNameViewModel> GetListFilters(ApplicationDbContext context)
         {
